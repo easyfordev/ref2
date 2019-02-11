@@ -33,7 +33,7 @@ private slots:
     void on_radioButton_3_clicked();
     void on_radioButton_4_clicked();
     void on_radioButton_5_clicked();
-
+    void on_pushButton_3_clicked();
 
 private:
     Ui::MainWindow *ui;

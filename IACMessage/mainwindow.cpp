@@ -3,6 +3,8 @@
 
 #include <QFileInfo>
 #include <QJsonObject>
+#include <QGraphicsView>
+#include <QGraphicsScene>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -188,4 +190,14 @@ void MainWindow::on_radioButton_5_clicked()
 {
     ui->comboBox->setEnabled(false);
     ui->comboBox_2->setEnabled(false);
+}
+
+void MainWindow::on_pushButton_3_clicked()
+{
+    // ui->plainTextEdit->clear();
+
+}
+void clearLayout(QLayout *layout)
+{
+
 }
