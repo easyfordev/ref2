@@ -54,7 +54,6 @@ public:
     QLabel *label_4;
     QComboBox *comboBox_2;
     QLabel *label_10;
-    QPushButton *pushButton_3;
     QStatusBar *statusBar;
 
     void setupUi(QMainWindow *MainWindow)
@@ -153,9 +152,6 @@ public:
         label_10 = new QLabel(centralWidget);
         label_10->setObjectName(QString::fromUtf8("label_10"));
         label_10->setGeometry(QRect(10, 200, 231, 16));
-        pushButton_3 = new QPushButton(centralWidget);
-        pushButton_3->setObjectName(QString::fromUtf8("pushButton_3"));
-        pushButton_3->setGeometry(QRect(350, 500, 111, 31));
         MainWindow->setCentralWidget(centralWidget);
         statusBar = new QStatusBar(MainWindow);
         statusBar->setObjectName(QString::fromUtf8("statusBar"));
@@ -185,7 +181,6 @@ public:
         label_5->setText(QApplication::translate("MainWindow", "Destination", nullptr));
         label_4->setText(QApplication::translate("MainWindow", "Source", nullptr));
         label_10->setText(QApplication::translate("MainWindow", "Key name                        Data type", nullptr));
-        pushButton_3->setText(QApplication::translate("MainWindow", "Clear", nullptr));
     } // retranslateUi
 
 };

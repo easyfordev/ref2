@@ -5,6 +5,7 @@
 #include <QJsonObject>
 #include <QGraphicsView>
 #include <QGraphicsScene>
+#include <QTextStream>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -29,14 +30,19 @@ MainWindow::~MainWindow()
 void MainWindow::initItems(){
 //    QString content;
 //    QFile file("~/IACMessage/hmc_dlt_statistics_config.ini");
-//    QFileInfo fileInfo4(".");
 //    if (file.open(QIODevice::ReadOnly)) { // If congif file exists,
 //         ui->plainTextEdit->setPlainText("File exists!!");
 //    } else{
-//        ui->plainTextEdit->setPlainText(fileInfo4.absoluteFilePath());
 //    }
-
-    QStringList items = { "item1", "item2", "item3", "item4", "item5", "item6", "item7", "item8", "item9" };
+    QString content;
+    QFile file("../IACMessage/itemList.ini");
+    QStringList items;
+    if (file.open(QIODevice::ReadOnly)) { // If congif file exists,
+        QTextStream stream(&file);
+        content = stream.readAll();
+        items = content.split('\n');
+        ui->plainTextEdit->setPlainText(content);
+    }
     ui->comboBox->addItems(items);
     ui->comboBox_2->addItems(items);
 }
