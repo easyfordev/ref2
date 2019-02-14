@@ -28,12 +28,6 @@ MainWindow::~MainWindow()
 }
 
 void MainWindow::initItems(){
-//    QString content;
-//    QFile file("~/IACMessage/hmc_dlt_statistics_config.ini");
-//    if (file.open(QIODevice::ReadOnly)) { // If congif file exists,
-//         ui->plainTextEdit->setPlainText("File exists!!");
-//    } else{
-//    }
     QString content;
     QFile file("../IACMessage/itemList.ini");
     QStringList items;
