@@ -22,7 +22,7 @@ QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_MainWindow_t {
     QByteArrayData data[11];
-    char stringdata0[200];
+    char stringdata0[213];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -35,22 +35,21 @@ QT_MOC_LITERAL(0, 0, 10), // "MainWindow"
 QT_MOC_LITERAL(1, 11, 14), // "button1Clicked"
 QT_MOC_LITERAL(2, 26, 0), // ""
 QT_MOC_LITERAL(3, 27, 14), // "button2Clicked"
-QT_MOC_LITERAL(4, 42, 10), // "setSrcDest"
-QT_MOC_LITERAL(5, 53, 22), // "on_radioButton_clicked"
-QT_MOC_LITERAL(6, 76, 24), // "on_radioButton_2_clicked"
-QT_MOC_LITERAL(7, 101, 24), // "on_radioButton_3_clicked"
-QT_MOC_LITERAL(8, 126, 24), // "on_radioButton_4_clicked"
-QT_MOC_LITERAL(9, 151, 24), // "on_radioButton_5_clicked"
-QT_MOC_LITERAL(10, 176, 23) // "on_pushButton_3_clicked"
+QT_MOC_LITERAL(4, 42, 22), // "on_radioButton_clicked"
+QT_MOC_LITERAL(5, 65, 24), // "on_radioButton_2_clicked"
+QT_MOC_LITERAL(6, 90, 24), // "on_radioButton_3_clicked"
+QT_MOC_LITERAL(7, 115, 24), // "on_radioButton_4_clicked"
+QT_MOC_LITERAL(8, 140, 24), // "on_radioButton_5_clicked"
+QT_MOC_LITERAL(9, 165, 23), // "on_pushButton_3_clicked"
+QT_MOC_LITERAL(10, 189, 23) // "on_pushButton_4_clicked"
 
     },
     "MainWindow\0button1Clicked\0\0button2Clicked\0"
-    "setSrcDest\0on_radioButton_clicked\0"
-    "on_radioButton_2_clicked\0"
+    "on_radioButton_clicked\0on_radioButton_2_clicked\0"
     "on_radioButton_3_clicked\0"
     "on_radioButton_4_clicked\0"
     "on_radioButton_5_clicked\0"
-    "on_pushButton_3_clicked"
+    "on_pushButton_3_clicked\0on_pushButton_4_clicked"
 };
 #undef QT_MOC_LITERAL
 
@@ -100,13 +99,13 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         switch (_id) {
         case 0: _t->button1Clicked(); break;
         case 1: _t->button2Clicked(); break;
-        case 2: _t->setSrcDest(); break;
-        case 3: _t->on_radioButton_clicked(); break;
-        case 4: _t->on_radioButton_2_clicked(); break;
-        case 5: _t->on_radioButton_3_clicked(); break;
-        case 6: _t->on_radioButton_4_clicked(); break;
-        case 7: _t->on_radioButton_5_clicked(); break;
-        case 8: _t->on_pushButton_3_clicked(); break;
+        case 2: _t->on_radioButton_clicked(); break;
+        case 3: _t->on_radioButton_2_clicked(); break;
+        case 4: _t->on_radioButton_3_clicked(); break;
+        case 5: _t->on_radioButton_4_clicked(); break;
+        case 6: _t->on_radioButton_5_clicked(); break;
+        case 7: _t->on_pushButton_3_clicked(); break;
+        case 8: _t->on_pushButton_4_clicked(); break;
         default: ;
         }
     }

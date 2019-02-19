@@ -6,6 +6,8 @@
 #include <QGraphicsView>
 #include <QGraphicsScene>
 #include <QTextStream>
+#include <QFileDialog>
+#include <QMessageBox>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -29,13 +31,13 @@ MainWindow::~MainWindow()
 
 void MainWindow::initItems(){
     QString content;
-    QFile file("../IACMessage/itemList.ini");
+    QFile file("../IACMessage/hmc_appservicetype.ini");
     QStringList items;
     if (file.open(QIODevice::ReadOnly)) { // If congif file exists,
         QTextStream stream(&file);
         content = stream.readAll();
         items = content.split('\n');
-        ui->plainTextEdit->setPlainText(content);
+//        ui->plainTextEdit->setPlainText(content);
     }
     ui->comboBox->addItems(items);
     ui->comboBox_2->addItems(items);
@@ -63,29 +65,12 @@ void MainWindow::button1Clicked(){
     }
 
     this->fullMessageName = prefix + "_" + body + "_" +postfix;
+    this->fullMessageName = fullMessageName.toUpper();
     ui->label_9->setText(fullMessageName);
 
-    this->setKeyValues();
+    setKeyValues();
 }
-QGroupBox *MainWindow::createFirstExclusiveGroup()
-{
-    QGroupBox *groupBox = new QGroupBox(tr("Exclusive Radio Buttons"));
 
-    QRadioButton *radio1 = new QRadioButton(tr("&Radio button 1"));
-    QRadioButton *radio2 = new QRadioButton(tr("R&adio button 2"));
-    QRadioButton *radio3 = new QRadioButton(tr("Ra&dio button 3"));
-
-    radio1->setChecked(true);
-
-    QVBoxLayout *vbox = new QVBoxLayout;
-    vbox->addWidget(radio1);
-    vbox->addWidget(radio2);
-    vbox->addWidget(radio3);
-    vbox->addStretch(1);
-    groupBox->setLayout(vbox);
-
-    return groupBox;
-}
 void MainWindow::setKeyValues(){
     currentNum = ui->textEdit_4->toPlainText().toInt();
 
@@ -97,17 +82,20 @@ void MainWindow::setKeyValues(){
 
         nameArray[i] = new QPlainTextEdit();
         nameArray[i]->setPlaceholderText("name");
-        nameArray[i]->setFixedSize(100,25);
+        nameArray[i]->setFixedSize(100,31);
 
         typeArray[i] = new QComboBox();
         typeArray[i]->addItems({"string", "number", "json", "array", "boolean"});
-        typeArray[i]->setFixedSize(100,25);
+        typeArray[i]->setFixedSize(100,31);
 
         layout->addWidget(nameArray[i]);
         layout->addWidget(label);
         layout->addWidget(typeArray[i]);
 
         ui->verticalLayout->addLayout(layout);
+//        ui->verticalLayout->addWidget(nameArray[i]);
+//        ui->verticalLayout->addWidget(typeArray[i]);
+
     }
 
 }
@@ -156,10 +144,6 @@ void MainWindow::button2Clicked(){
     ui->plainTextEdit->setPlainText(jsonMessage + ",\n"+jsonRuleMessage);
 }
 
-void MainWindow::setSrcDest(){
-    ui->plainTextEdit->setPlainText("Hee");
-}
-
 void MainWindow::on_radioButton_clicked()
 {
     ui->comboBox->setEnabled(true);
@@ -192,12 +176,36 @@ void MainWindow::on_radioButton_5_clicked()
     ui->comboBox_2->setEnabled(false);
 }
 
-void MainWindow::on_pushButton_3_clicked()
+void MainWindow::on_pushButton_3_clicked() // Clear all
 {
-    // ui->plainTextEdit->clear();
-
+     ui->plainTextEdit->clear();
+     this->jsonMessage.clear();
+     this->jsonRuleMessage.clear();
+     QLayoutItem* item;
+     QLayoutItem* item2;
+     while ( ( item = ui->verticalLayout->takeAt(0)) != NULL ){
+         QVBoxLayout *temp = (QVBoxLayout *)item;
+         while((item2 = temp->takeAt(0)) != NULL){
+             delete item2->widget();
+             delete item2;
+         }
+         delete item->widget();
+         delete item;
+     }
 }
-void clearLayout(QLayout *layout)
-{
 
+void MainWindow::on_pushButton_4_clicked() // Save results to file
+{
+    QString fileName = QFileDialog::getSaveFileName(this, "Save as");
+    QFile file(fileName);
+
+    if (!file.open(QFile::WriteOnly | QFile::Text)) {
+        QMessageBox::warning(this, "Warning", "Cannot save file: " + file.errorString());
+        return;
+    }
+    setWindowTitle(fileName);
+    QTextStream out(&file);
+    QString text = ui->plainTextEdit->toPlainText();
+    out << text;
+    file.close();
 }
